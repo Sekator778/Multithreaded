@@ -6,7 +6,7 @@ package concurrent;
 
 public class ThreadStop {
     public static void main(String[] args) throws InterruptedException {
-        Thread first = new Thread(
+        Thread thread = new Thread(
                 () -> {
                     int count = 0;
                     while (!Thread.currentThread().isInterrupted()) {
@@ -14,8 +14,8 @@ public class ThreadStop {
                     }
                 }
         );
-        first.start();
+        thread.start();
         Thread.sleep(1);
-        first.interrupt();
+        thread.interrupt();
     }
 }
