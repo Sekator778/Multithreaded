@@ -7,7 +7,7 @@ package atomicity;
 public class CountShareMain {
     public static void main(String[] args) throws InterruptedException {
         Count count = new Count();
-        for (int i = 1; i < 10001; i++) {
+        for (int i = 1; i < 1001; i++) {
             System.out.println("i = " + i);
 
             Thread first = new Thread(count::increment);
@@ -16,7 +16,20 @@ public class CountShareMain {
             second.start();
             first.join();
             second.join();
-            System.out.println("count.get() " + count.get());
+            System.out.println("increment count.get() " + count.get());
+        }
+        Thread.sleep(950);
+
+        for (int i = 1; i < 1001; i++) {
+            System.out.println("i = " + i);
+
+            Thread first = new Thread(count::decrement);
+            Thread second = new Thread(count::decrement);
+            first.start();
+            second.start();
+            first.join();
+            second.join();
+            System.out.println("decrement count.get() " + count.get());
         }
     }
 }

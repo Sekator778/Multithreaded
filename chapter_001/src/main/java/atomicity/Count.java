@@ -5,10 +5,16 @@ package atomicity;
  */
 
 public final class Count {
-    private static int value;
+    private int value;
 
-    public synchronized void increment() {
-        value++;
+    public  void increment() {
+        synchronized (this) {
+            value++;
+        }
+    }
+
+    public void decrement() {
+        value--;
     }
 
     public int get() {
