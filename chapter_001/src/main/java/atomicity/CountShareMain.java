@@ -23,8 +23,8 @@ public class CountShareMain {
         for (int i = 1; i < 1001; i++) {
             System.out.println("i = " + i);
 
-            Thread first = new Thread(count::decrement);
-            Thread second = new Thread(count::decrement);
+            Thread first = new Thread(count::increment);
+            Thread second = new Thread(count::increment);
             first.start();
             second.start();
             first.join();
