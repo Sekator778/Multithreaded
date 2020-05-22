@@ -6,6 +6,12 @@ import net.jcip.annotations.ThreadSafe;
 
 import java.util.Iterator;
 
+/**
+ * коллекция, которая будет корректно работать в многопоточный среде.
+ * То есть сама коллекция будет общим ресурсом между нитями.
+ *
+ * @param <T>
+ */
 @ThreadSafe
 public class SingleLockList<T> implements Iterable<T> {
     @GuardedBy("list")
