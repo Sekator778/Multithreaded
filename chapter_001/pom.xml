@@ -11,5 +11,14 @@
 
     <artifactId>chapter_001</artifactId>
 
+<dependencies>
+    <dependency>
+        <groupId>org.example</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <artifactId>chapter_003</artifactId>
+    </dependency>
+</dependencies>
+
+
 
 </project>
