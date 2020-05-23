@@ -14,7 +14,6 @@ env:
   global:
     - CODECOV_TOKEN="48d50e64-fae6-45fd-a7ee-75a224df401e"
 
-# Отправлять уведомление на почтуyouremail@smtp.ru(Изменить на свою) если сборка упала
 notifications:
   email:
     recipients:
