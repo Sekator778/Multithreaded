@@ -1,6 +1,5 @@
 package synch;
 
-import list.SimpleArrayList;
 import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 
@@ -33,10 +32,7 @@ public class SingleLockList<T> implements Iterable<T> {
     private SimpleArrayList<T> copy() {
         synchronized (list) {
             SimpleArrayList<T> copy = new SimpleArrayList<T>();
-            for (T t : list
-            ) {
-                copy.add(t);
-            }
+            copy.addAll(list);
             return copy;
         }
     }
