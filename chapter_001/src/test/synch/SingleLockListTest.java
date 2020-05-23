@@ -78,4 +78,28 @@ public class SingleLockListTest {
         first.join();
         second.join();
     }
+
+    @Test
+    public void iteratorFailSafe() throws InterruptedException {
+        SingleLockList<Integer> list = new SingleLockList<>();
+        Thread first = new Thread(
+                () -> {
+                    list.add(1);
+                    list.add(2);
+                    list.add(3);
+                });
+
+        Thread second = new Thread(
+                () -> {
+                    int x = 0;
+                    for (Integer integer : list) {
+                        list.add(23);
+                        assertThat(integer, is(++x));
+                    }
+                });
+        first.start();
+        second.start();
+        first.join();
+        second.join();
+    }
 }
