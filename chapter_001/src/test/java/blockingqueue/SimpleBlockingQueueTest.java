@@ -83,4 +83,21 @@ public class SimpleBlockingQueueTest {
         producerThread.join();
         consumerThread.join();
     }
+
+    @Test
+    public void when2TimeProducerAndOneConsumer() throws InterruptedException {
+        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(10);
+        Producer producer1 = new Producer(queue);
+        Producer producer2 = new Producer(queue);
+        Consumer consumer = new Consumer(queue);
+        Thread producerThread = new Thread(producer1, "ThreadProducerOne");
+        Thread producerThread2 = new Thread(producer2, "ThreadProducerTwo");
+        Thread consumerThread = new Thread(consumer, "ConsumerProducer");
+        producerThread.start();
+        producerThread2.start();
+        consumerThread.start();
+        producerThread.join();
+        consumerThread.join();
+        producerThread2.join();
+    }
 }
