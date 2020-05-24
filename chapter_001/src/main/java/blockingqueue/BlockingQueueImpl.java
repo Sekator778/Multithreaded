@@ -12,4 +12,6 @@ interface BlockingQueueImpl<T> {
      * возвращает элемент из начала очереди с удалением;
      */
     T poll() throws InterruptedException;
+
+    boolean isEmpty();
 }

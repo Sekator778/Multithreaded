@@ -8,6 +8,7 @@ import java.util.Queue;
 
 @ThreadSafe
 public class SimpleBlockingQueue<T> implements BlockingQueueImpl<T> {
+    private int size;
 
     @GuardedBy("this")
     private final Queue<T> queue;
@@ -19,7 +20,7 @@ public class SimpleBlockingQueue<T> implements BlockingQueueImpl<T> {
     }
 
     public SimpleBlockingQueue() {
-        this.queue =  new LinkedList<>();
+        this.queue = new LinkedList<>();
         this.maxSize = Integer.MAX_VALUE;
     }
 
@@ -28,21 +29,29 @@ public class SimpleBlockingQueue<T> implements BlockingQueueImpl<T> {
      */
     @Override
     public synchronized void offer(T value) throws InterruptedException {
-            if (queue.size() == maxSize) {
-                this.wait();
-            }
-            queue.add(value);
-            this.notify();
+        if (queue.size() == maxSize) {
+            this.wait();
+        }
+        queue.add(value);
+        size++;
+        this.notify();
     }
+
     /**
      * возвращает элемент из начала очереди с удалением;
      */
     @Override
     public synchronized T poll() throws InterruptedException {
-            if (queue.size() == 0) {
-                this.wait();
-            }
-            this.notify();
-            return queue.remove();
+        if (queue.size() == 0) {
+            this.wait();
+        }
+        this.notify();
+        size--;
+        return queue.remove();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
     }
 }

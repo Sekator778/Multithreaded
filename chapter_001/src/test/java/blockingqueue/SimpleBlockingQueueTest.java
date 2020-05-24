@@ -100,4 +100,17 @@ public class SimpleBlockingQueueTest {
         consumerThread.join();
         producerThread2.join();
     }
+
+    @Test
+    public void whenFirstConsumer() throws InterruptedException {
+        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(10);
+        Producer producer1 = new Producer(queue);
+        Consumer consumer = new Consumer(queue);
+        Thread producerThread = new Thread(producer1, "ThreadProducerOne");
+        Thread consumerThread = new Thread(consumer, "ConsumerProducer");
+        consumerThread.start();
+        producerThread.start();
+        producerThread.join();
+        consumerThread.join();
+    }
 }
