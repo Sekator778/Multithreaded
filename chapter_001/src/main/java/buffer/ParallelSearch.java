@@ -1,12 +1,9 @@
 package buffer;
 
 import blockingqueue.SimpleBlockingQueue;
-import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
+@ThreadSafe
 public class ParallelSearch {
 
     public static void main(String[] args) {
