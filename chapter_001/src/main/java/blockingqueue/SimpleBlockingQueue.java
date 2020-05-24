@@ -8,7 +8,6 @@ import java.util.Queue;
 
 @ThreadSafe
 public class SimpleBlockingQueue<T> implements BlockingQueueImpl<T> {
-    private int size;
 
     @GuardedBy("this")
     private final Queue<T> queue;
@@ -33,7 +32,6 @@ public class SimpleBlockingQueue<T> implements BlockingQueueImpl<T> {
             this.wait();
         }
         queue.add(value);
-        size++;
         this.notify();
     }
 
@@ -46,12 +44,11 @@ public class SimpleBlockingQueue<T> implements BlockingQueueImpl<T> {
             this.wait();
         }
         this.notify();
-        size--;
         return queue.remove();
     }
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return queue.isEmpty();
     }
 }
