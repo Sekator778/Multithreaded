@@ -1,4 +1,4 @@
-package wait.cyclicbarrier;
+package barrier.cyclicbarrier;
 
 import java.util.concurrent.*;
 

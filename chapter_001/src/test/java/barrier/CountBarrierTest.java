@@ -1,14 +1,8 @@
-package wait;
+package barrier;
 
 import org.junit.Test;
 
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.concurrent.CyclicBarrier;
-
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
 
 public class CountBarrierTest {
 
