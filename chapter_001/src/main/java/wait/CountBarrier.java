@@ -7,7 +7,7 @@ import net.jcip.annotations.ThreadSafe;
  * Класс, который блокирует выполнение по условию счетчика.
  * Переменная total содержит количество вызовом метода count().
  * <p>
- * Нити, которые выполняют метод await, могут начать работу если поле count == total.
+ * Нити, которые выполняют метод await, могут продолжить работу если поле count == total.
  * Если оно не равно, то нужно перевести нить в состояние wait.
  */
 @ThreadSafe
@@ -20,6 +20,9 @@ public class CountBarrier {
     private int count = 0;
 
     public CountBarrier(final int total) {
+        if (total <= 0) {
+            throw new IllegalArgumentException();
+        }
         this.total = total;
     }
 
@@ -31,10 +34,12 @@ public class CountBarrier {
 
     public void await() {
         synchronized (monitor) {
-            if (total != count) {
+            if (total == count) {
+                System.out.println("await release");
                 monitor.notifyAll();
             } else {
                 try {
+                    System.out.println("need await");
                     monitor.wait();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
