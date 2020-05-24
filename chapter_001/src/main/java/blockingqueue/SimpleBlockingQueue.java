@@ -18,6 +18,14 @@ public class SimpleBlockingQueue<T> implements BlockingQueueImpl<T> {
         this.maxSize = maxSize;
     }
 
+    public SimpleBlockingQueue() {
+        this.queue =  new LinkedList<>();
+        this.maxSize = Integer.MAX_VALUE;
+    }
+
+    /**
+     * вставляет заданный элемент в эту очередь , если можно так сразу сделать , не нарушая ограничения емкости
+     */
     @Override
     public synchronized void offer(T value) throws InterruptedException {
             if (queue.size() == maxSize) {
