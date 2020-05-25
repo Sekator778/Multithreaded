@@ -1,3 +1,4 @@
+http://java-online.ru/concurrent-executor.xhtml
 1. Реализовать сервис для рассылки почты. Создайте класс EmailNotification.
 2. В классе будет один метод emailTo(User user).
 3. Модель User описывают поля username, email.
