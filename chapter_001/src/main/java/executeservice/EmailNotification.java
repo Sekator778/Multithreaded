@@ -1,6 +1,6 @@
 package executeservice;
 
-import store.User;
+import net.jcip.annotations.ThreadSafe;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 /**
  * сервис для рассылки почты
  */
-
+@ThreadSafe
 public class EmailNotification {
     private final ExecutorService pool;
 
@@ -27,7 +27,13 @@ public class EmailNotification {
     }
 
     public void emailTo(User user) {
-
+        String subject = String.format("Notification %s to email %s ", user.getUsername(), user.getEmail());
+        String body = String.format("Add a new event to %s", user.getUsername());
+        this.pool.submit(
+                () -> {
+                    send(subject, body, user.getEmail());
+                    sendString(subject, body, user.getEmail());
+                });
     }
 
     public void close() {
@@ -41,5 +47,13 @@ public class EmailNotification {
         }
     }
 
-    public void send(String subject, String body, String email) {}
+    private void send(String subject, String body, String email) {
+    }
+
+    /**
+     * only for test
+     */
+    private String sendString(String subject, String body, String email) {
+        return "dd " + subject + body + email;
+    }
 }
