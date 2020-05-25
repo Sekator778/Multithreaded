@@ -48,7 +48,11 @@ public class SimpleBlockingQueue<T> implements BlockingQueueImpl<T> {
     }
 
     @Override
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         return queue.isEmpty();
+    }
+
+    public synchronized int size() {
+        return queue.size();
     }
 }
