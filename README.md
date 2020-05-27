@@ -7,3 +7,6 @@ chapter_001 include Multithreading
 "Объединение зафиксированных изменений 2"
 
 add new branch hotfix
+
+
+add hotfix_139840 branch
