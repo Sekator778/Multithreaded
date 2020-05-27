@@ -3,3 +3,5 @@
 [![codecov](https://codecov.io/gh/Sekator778/Project/branch/master/graph/badge.svg)](https://codecov.io/gh/Sekator778/Project)
 
 chapter_001 include Multithreading
+
+add new branch hotfix
