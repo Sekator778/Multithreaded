@@ -13,7 +13,7 @@ import java.util.List;
  */
 @ThreadSafe
 public class ThreadPool {
-    private final List<Thread> threads;
+    private final List<Thread> threads = new LinkedList<>();
     private final SimpleBlockingQueue<Runnable> tasks;
     private volatile boolean shutdown = false;
 
@@ -23,7 +23,6 @@ public class ThreadPool {
 
     public ThreadPool(SimpleBlockingQueue<Runnable> tasks) {
         int size = Runtime.getRuntime().availableProcessors();
-        threads = new LinkedList<>();
         this.tasks = tasks;
         for (int i = 0; i < size; i++) {
             ThreadPoolsThread thread = new ThreadPoolsThread(tasks);
