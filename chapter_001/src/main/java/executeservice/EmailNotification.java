@@ -10,19 +10,21 @@ import java.util.concurrent.Executors;
  */
 @ThreadSafe
 public class EmailNotification {
-    private final ExecutorService pool;
+    private ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     /**
      * size == availableProcessors
      */
     public EmailNotification() {
-        this.pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     }
 
     /**
      * size = user set value
      */
     public EmailNotification(int sizePool) {
+        if (sizePool <= 0) {
+            throw new IllegalArgumentException();
+        }
         this.pool = Executors.newFixedThreadPool(sizePool);
     }
 
