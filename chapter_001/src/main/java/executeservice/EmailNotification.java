@@ -10,23 +10,7 @@ import java.util.concurrent.Executors;
  */
 @ThreadSafe
 public class EmailNotification {
-    private ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-
-    /**
-     * size == availableProcessors
-     */
-    public EmailNotification() {
-    }
-
-    /**
-     * size = user set value
-     */
-    public EmailNotification(int sizePool) {
-        if (sizePool <= 0) {
-            throw new IllegalArgumentException();
-        }
-        this.pool = Executors.newFixedThreadPool(sizePool);
-    }
+    private final ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     public void emailTo(User user) {
         String subject = String.format("Notification %s to email %s ", user.getUsername(), user.getEmail());
