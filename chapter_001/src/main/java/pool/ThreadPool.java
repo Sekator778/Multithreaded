@@ -15,7 +15,7 @@ import java.util.List;
 public class ThreadPool {
     private final List<Thread> threads;
     private final SimpleBlockingQueue<Runnable> tasks;
-    private boolean shutdown = false;
+    private volatile boolean shutdown = false;
 
     /**
      * constructor start with count thread == count processors
@@ -34,13 +34,12 @@ public class ThreadPool {
     public void work(Runnable task) throws InterruptedException {
         if (shutdown) {
             throw new InterruptedException("ThreadPool has been shutDown, no further tasks can be added");
-        } else {
-            tasks.offer(task);
         }
+        tasks.offer(task);
     }
 
     public void execute() {
-        for (Thread thread: threads
+        for (Thread thread : threads
         ) {
             thread.start();
         }
