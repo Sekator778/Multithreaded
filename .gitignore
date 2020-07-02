@@ -72,3 +72,4 @@ jrebel.lic
 build
 .gradle
 *.pid
+/.PVS-Studio/
