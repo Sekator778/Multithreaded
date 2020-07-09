@@ -7,29 +7,29 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.Callable;
 
 /**
  *
  */
 
-public class Worker implements Runnable {
+public class Worker implements Callable {
     private final int id;
     private final String sourceDataUrl;
     private final String tokenDataUrl;
-    private final Map<Integer, JSONObject> map;
+    private  Map<Integer, JSONObject> map;
 
-    public Worker(Camera camera, Map<Integer, JSONObject> map) {
+    public Worker(Camera camera) {
         id = camera.getId();
         sourceDataUrl = camera.getSourceDataUrl();
         tokenDataUrl = camera.getTokenDataUrl();
-        this.map = map;
+//        this.map = map;
     }
 
     @Override
-    public void run() {
+    public JSONObject call() {
         JSONObject object = answer();
-        int id = object.getInt("id");
-        map.putIfAbsent(id, object);
+        return object;
     }
 
     private JSONObject getJSON(String urlName) {
