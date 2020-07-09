@@ -34,6 +34,18 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20190722</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/net.jcip/jcip-annotations -->
         <dependency>
             <groupId>net.jcip</groupId>
