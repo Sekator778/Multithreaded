@@ -21,7 +21,7 @@ public class Util {
 //
 //    }
 
-    public void setExecutorFuture(List<Camera> cameraList) throws InterruptedException, ExecutionException {
+    public List<JSONObject> setExecutorFuture(List<Camera> cameraList) throws InterruptedException, ExecutionException {
         ExecutorService pool = Executors.newCachedThreadPool();
         List<Callable<JSONObject>> tasks = new ArrayList<>();
         cameraList.forEach(camera -> {
@@ -34,9 +34,12 @@ public class Util {
             });
         });
         List<Future<JSONObject>> results = pool.invokeAll(tasks);
+        List<JSONObject> objects = new ArrayList<>();
         for (Future<JSONObject> future : results) {
+            objects.add(future.get());
             System.out.println(future.get());
         }
         pool.shutdown();
+        return objects;
     }
 }
