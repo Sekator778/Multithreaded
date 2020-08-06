@@ -15,9 +15,9 @@ public class ThreadPoolTest {
     public void whenWorkThreadPool() throws InterruptedException {
         SimpleBlockingQueue<Runnable> queue = new SimpleBlockingQueue<>(23);
         List<Runnable> jobs = new ArrayList<>();
-        for (int i = 0; i < 1_000; i++) {
+        for (int i = 0; i < 10; i++) {
             int idIndex = i;
-            jobs.add(() -> System.out.println(String.format("%s starting job %s", Thread.currentThread().getName(), idIndex)));
+            jobs.add(() -> System.out.printf("%s starting job %s%n", Thread.currentThread().getName(), idIndex));
         }
         ThreadPool threadPool = new ThreadPool(queue);
         Thread producer = new Thread(
@@ -46,9 +46,9 @@ public class ThreadPoolTest {
     public void whenShutdownThreadPool() throws InterruptedException {
         SimpleBlockingQueue<Runnable> queue = new SimpleBlockingQueue<>(23);
         List<Runnable> jobs = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             int idIndex = i;
-            jobs.add(() -> System.out.println(String.format("%s starting job %s", Thread.currentThread().getName(), idIndex)));
+            jobs.add(() -> System.out.printf("%s starting job %s%n", Thread.currentThread().getName(), idIndex));
         }
         final ThreadPool threadPool = new ThreadPool(queue);
         Thread producer = new Thread(
