@@ -5,31 +5,31 @@ import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class CASСountTest {
+public class CasCountTest {
 
     @Test
     public void increment() throws InterruptedException {
         for (int x = 0; x < 10; x++) {
 
-            CASСount<Integer> casСount = new CASСount<>();
+            CasCount<Integer> casCountInteger = new CasCount<>();
             Thread first = new Thread(
                     () -> {
                         for (int i = 0; i < 2; i++) {
-                            casСount.increment();
+                            casCountInteger.increment();
                         }
                     }
             );
             Thread second = new Thread(
                     () -> {
                         for (int i = 0; i < 5; i++) {
-                            casСount.increment();
+                            casCountInteger.increment();
                         }
                     }
             );
             Thread three = new Thread(
                     () -> {
                         for (int i = 0; i < 7; i++) {
-                            casСount.increment();
+                            casCountInteger.increment();
                         }
                     }
             );
@@ -40,7 +40,7 @@ public class CASСountTest {
             second.join();
             three.join();
 
-            assertThat(casСount.get(), is(14));
+            assertThat(casCountInteger.get(), is(14));
         }
     }
 }
