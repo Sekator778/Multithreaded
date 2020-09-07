@@ -14,8 +14,7 @@ public class MyRunnable implements Runnable {
         for (int i = count; i >= 0; i--) {
 
             countDownLatch.countDown();
-            System.out.println(Thread.currentThread().getName() +
-                    " has reduced latch count to : " + i);
+            System.out.println(Thread.currentThread().getName() + " has reduced latch count to : " + i);
 
             try {
                 Thread.sleep(1000);

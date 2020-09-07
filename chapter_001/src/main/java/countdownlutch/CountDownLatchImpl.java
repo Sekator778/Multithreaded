@@ -9,17 +9,14 @@ public class CountDownLatchImpl {
     }
 
     public synchronized void await() throws InterruptedException {
-        if (count > 0) {
+        while (count > 0) {
             this.wait();
             System.out.println(Thread.currentThread().getName() + " wait");
-
-        } else {
-            System.out.println("await release");
         }
     }
 
     public synchronized void countDown() {
-        count --;
+        count--;
         if (count == 0) {
             this.notify();
         }

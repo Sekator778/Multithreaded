@@ -9,6 +9,7 @@ import net.jcip.annotations.ThreadSafe;
  * <p>
  * Нити, которые выполняют метод await, могут продолжить работу если поле count == total.
  * Если оно не равно, то нужно перевести нить в состояние wait.
+ *
  */
 @ThreadSafe
 public class CountBarrier {

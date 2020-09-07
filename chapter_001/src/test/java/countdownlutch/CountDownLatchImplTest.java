@@ -18,9 +18,7 @@ public class CountDownLatchImplTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println("count has reached zero, " +
-                Thread.currentThread().getName() + " thread has ended");
+        System.out.println("count has reached zero, " + Thread.currentThread().getName() + " thread has ended");
     }
 
     @Test
