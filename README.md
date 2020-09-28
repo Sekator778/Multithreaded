@@ -1,6 +1,7 @@
 # Project
 [![Build Status](https://travis-ci.org/Sekator778/Multithreaded.svg?branch=master)](https://travis-ci.org/Sekator778/Multithreaded)
-[![codecov](https://codecov.io/gh/Sekator778/Project/branch/master/graph/badge.svg)](https://codecov.io/gh/Sekator778/Project)
+[![codecov](https://codecov.io/gh/Sekator778/Multithreaded/branch/master/graph/badge.svg)](https://codecov.io/gh/Sekator778/Multithreaded)
+
 
 dir - chapter_001 include Multithreading
 
